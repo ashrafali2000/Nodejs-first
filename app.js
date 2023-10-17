@@ -2,13 +2,17 @@
 // const justCheck = require("./myCheckFolder/check")
 // console.log(justCheck)
 
-// Create Server
 const http = require("http");
+const fs = require("fs");
+const path = require("path");
+const filePath = path.join(process.cwd(),"formData.txt");
+// Create Server
 const server = http.createServer( (req,res) => {
 if(req.url === "/"){
     res.write("Hello World")
     res.end();
 }else if(req.url === "/form"){
+    res.setHeader("Content-type", "text/html");
     res.write(`<h1>WellCome to Our Website</h1>
     <div class ='myForm'>
     <form action='/submit' method='POST'>
@@ -20,11 +24,27 @@ if(req.url === "/"){
     <input type='email' id = 'email' required/><br><br>
     <lable for= 'password'>Password</lable>
     <input type='password' id= 'password' required/><br><br>
-    <button type ='submit'>Submit</button>
+    <button>Submit</button>
     </form>
     </div>
     `)
+    res.end();
 }
+else if(req.url === '/submit'){
+    // res.write(Data)
+    let Data = "";
+    req.on("data", chunk => Data += chunk)
+    req.on("end",() => {
+    fs.readFile(filePath,"utf-8",(_,fileData) => {
+        const newData = fileData + "\n"+ Data;
+        fs.writeFile(filePath, newData, () => {
+            res.write(Data)
+            res.end()
+        })
+    }) 
+    })
+}
+
 })
 server.listen(3000);
 
