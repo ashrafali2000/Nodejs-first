@@ -30,19 +30,23 @@ if(req.url === "/"){
     `)
     res.end();
 }
-else if(req.url === '/submit'){
+else if(req.url === "/submit"){
     // res.write(Data)
     let Data = "";
-    req.on("data", chunk => Data += chunk)
+    req.on("data", chunk => Data += chunk);
     req.on("end",() => {
-    fs.readFile(filePath,"utf-8",(_,fileData) => {
+    fs.readFile(filePath,"utf8",(_,fileData) => {
         const newData = fileData + "\n"+ Data;
         fs.writeFile(filePath, newData, () => {
-            res.write(Data)
+            res.write("Data ecieved")
             res.end()
         })
     }) 
     })
+}
+else{
+    res.write("404 Error Page not Found")
+    res.end()
 }
 
 })
