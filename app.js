@@ -1,11 +1,14 @@
+//Basic Node  (1)
+
 // console.log("my name is ashraf ali")
 // const justCheck = require("./myCheckFolder/check")
 // console.log(justCheck)
-
+//module
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
 const filePath = path.join(process.cwd(), "formData.txt");
+
 // Create Server
 const server = http.createServer((req, res) => {
   if (req.url === "/") {
@@ -59,15 +62,15 @@ const server = http.createServer((req, res) => {
     req.on("end", () => {
         // console.log(Storage)
         // res.end()
-    //   fs.readFile(filePath, "utf8", (err, formFileData) => {
-    //     {
-    //       if (err) {
-    //         res.write(err);
-    //         res.end();
-    //       }
+      fs.readFile(filePath, "utf8", (err, formFileData) => {
+        {
+          if (err) {
+            res.write(err);
+            res.end();
+          }
         //   console.log(Storage);
-        //   let newData = formFileData + "\n" + Storage;
-          fs.writeFile(filePath, Storage, "utf8", (err) => {
+          let newData = formFileData + "\n" + Storage;
+          fs.writeFile(filePath, newData, "utf8", (err) => {
             if (err) {
               res.write(err);
               res.end();
@@ -75,9 +78,9 @@ const server = http.createServer((req, res) => {
             res.write("Data Recieved Sucessfully");
             res.end();
           });
-        // }
+        }
       });
-    // });
+    });
   } else {
     res.write("404 Error Page not Found");
     res.end();
