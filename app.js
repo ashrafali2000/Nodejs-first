@@ -15,16 +15,16 @@ if(req.url === "/"){
     // res.setHeader("Content-Type", "text/html");
     res.write(`<h1>WellCome to Our Website</h1>
     <div class ='myForm'>
-    <form action='/submit' method='POST'>
+    <form action ='/submit' method ='POST'>
     <lable for='firstName'>First_Name</lable>
-    <input type='text' id='firstName' required/><br><br>
+    <input type='text' name='firstName' id='firstName' required/><br><br>
     <lable for='lastName'>Last_Name</lable>
-    <input type='text' id='lastName' required/><br><br>
+    <input type='text' name='lastName' id='lastName' required/><br><br>
     <lable for='email'>Email</lable>
-    <input type='email' id = 'email' required/><br><br>
+    <input type='email' name='email' id = 'email' required/><br><br>
     <lable for= 'password'>Password</lable>
-    <input type='password' id= 'password' required/><br><br>
-    <button>Submit</button>
+    <input type='password' name='password' id= 'password' required/><br><br>
+    <button> Submit </button>
     </form>
     </div>
     `)
