@@ -9,7 +9,7 @@ const filePath = path.join(process.cwd(), "formData.txt");
 // Create Server
 const server = http.createServer((req, res) => {
   if (req.url === "/") {
-    res.write("Hello World");
+    res.write("Hello User");
     res.end();
   } else if (req.url === "/form") {
     // res.setHeader("Content-Type", "text/html");
@@ -30,6 +30,7 @@ const server = http.createServer((req, res) => {
     `);
     res.end();
   } else if (req.url === "/submit") {
+
     // res.write(Data)
     // let Data = "";
     // req.on("data", chunk => Data += chunk);
@@ -51,11 +52,13 @@ const server = http.createServer((req, res) => {
     //     })
     // })
     // })
-
+    
     //ATSP  - (Apny Tarap Say Practice)
     let Storage = "";
-    req.on("data", (chunk) => (Storage += chunk));
+    req.on("data", chunk => Storage += chunk);
     req.on("end", () => {
+        // console.log(Storage)
+        // res.end()
       fs.readFile(filePath, "utf8", (err, formFileData) => {
         {
           if (err) {
