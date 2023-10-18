@@ -12,7 +12,7 @@ if(req.url === "/"){
     res.write("Hello World")
     res.end();
 }else if(req.url === "/form"){
-    res.setHeader("Content-type", "text/html");
+    // res.setHeader("Content-Type", "text/html");
     res.write(`<h1>WellCome to Our Website</h1>
     <div class ='myForm'>
     <form action='/submit' method='POST'>
