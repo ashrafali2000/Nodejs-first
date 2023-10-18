@@ -1,2 +1,0 @@
-
-firstName=Ashraf&lastName=ali&email=ali4282271%40gmail.com&password=dfsdfds

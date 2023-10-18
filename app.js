@@ -59,15 +59,15 @@ const server = http.createServer((req, res) => {
     req.on("end", () => {
         // console.log(Storage)
         // res.end()
-      fs.readFile(filePath, "utf8", (err, formFileData) => {
-        {
-          if (err) {
-            res.write(err);
-            res.end();
-          }
+    //   fs.readFile(filePath, "utf8", (err, formFileData) => {
+    //     {
+    //       if (err) {
+    //         res.write(err);
+    //         res.end();
+    //       }
         //   console.log(Storage);
-          let newData = formFileData + "\n" + Storage;
-          fs.writeFile(filePath, newData, "utf8", (err) => {
+        //   let newData = formFileData + "\n" + Storage;
+          fs.writeFile(filePath, Storage, "utf8", (err) => {
             if (err) {
               res.write(err);
               res.end();
@@ -75,9 +75,9 @@ const server = http.createServer((req, res) => {
             res.write("Data Recieved Sucessfully");
             res.end();
           });
-        }
+        // }
       });
-    });
+    // });
   } else {
     res.write("404 Error Page not Found");
     res.end();
