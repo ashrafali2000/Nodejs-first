@@ -16,9 +16,17 @@ const users = [
         email:"khan42@gmail.com"
     }
 ]
+
+app.use(express.json());
+
 //Get Request
 app.get("/users", (req, res) => {
         res.send(users);
+})
+
+//Post Request
+app.post("/users", (req, res) => {
+        console.log("req----> ", req);
 })
 
 // Server listen
