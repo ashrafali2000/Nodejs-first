@@ -44,6 +44,13 @@ users.splice(index, 1)
 res.send({message:"user deleted sucessfully"})
 })
 
+// Put Request
+app.put("/users/:id", (req, res) => {
+let index = users.findIndex(usr => usr.id === +req.params.id);
+users.splice(index,0, req.body)
+res.send({message:"user Updated sucessfully"})
+})
+
 // Server listen
 app.listen(PORT, () => {
   console.log(`Server is running on Port ${PORT}`);
