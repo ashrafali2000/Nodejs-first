@@ -1,6 +1,7 @@
 import express from "express";
 const app = express();
 import home from "./routes/home.js"
+import products from "./routes/products.js"
 const PORT = 3000;
 
 const users = [
@@ -55,7 +56,8 @@ res.send({message:"user Updated sucessfully"})
 
 
 // Access file
-app.use("/home", home);
+app.use("/", home);
+app.use("/products", products);
 
 
 
