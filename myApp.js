@@ -19,16 +19,6 @@ const users = [
 
 app.use(express.json());
 
-fetch("http://localhost:3000/users", {
-  headers: { Accept: "application/json",
- "Content-Type": "application.json" },
-  method: "POST",
-  body: JSON.stringify({ name: "orasoft", email: "ora@gmail.com" })
-})
-  .then((res) => res.json())
-  .then((res) => console.log(res))
-  .catch((err) => console.log(err));
-
 
 //Get Request
 app.get("/users", (req, res) => {
@@ -38,8 +28,9 @@ app.get("/users", (req, res) => {
 //Post Request
 app.post("/users", (req, res) => {
   // console.log("req----> ", req);
+  //   console.log("req----> ", req.body);
   users.push(req.body)
-  console.log("req----> ", req.body);
+  res.send({message:"user added sucessfully"})
 });
 
 // Server listen
