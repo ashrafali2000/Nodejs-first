@@ -47,7 +47,7 @@ res.send({message:"user deleted sucessfully"})
 // Put Request
 app.put("/users/:id", (req, res) => {
 let index = users.findIndex(usr => usr.id === +req.params.id);
-users.splice(index,0, req.body)
+users.splice(index, 1, {id:+req.params.id, ...req.body})
 res.send({message:"user Updated sucessfully"})
 })
 
