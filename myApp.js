@@ -1,5 +1,6 @@
 import express from "express";
 const app = express();
+import home from "./routes/home.js"
 const PORT = 3000;
 
 const users = [
@@ -21,6 +22,7 @@ const users = [
 ];
 
 app.use(express.json());
+
 
 
 //Get Request
@@ -50,6 +52,15 @@ let index = users.findIndex(usr => usr.id === +req.params.id);
 users.splice(index, 1, {id:+req.params.id, ...req.body})
 res.send({message:"user Updated sucessfully"})
 })
+
+
+// Access file
+app.use("/home", home);
+
+
+
+
+
 
 // Server listen
 app.listen(PORT, () => {
